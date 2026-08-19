@@ -160,8 +160,7 @@
       backdrop-filter: blur(16px) saturate(140%);
       -webkit-backdrop-filter: blur(16px) saturate(140%);
       border: 1px solid rgba(243, 239, 229, 0.2);
-      position: sticky;
-      top: 24px;
+      position: relative;
       z-index: 100;
     }
 
@@ -799,11 +798,29 @@
       border-radius: 32px;
       border: 1px solid rgba(13, 46, 35, 0.1);
       overflow: hidden;
+      padding-left: clamp(24px, 5vw, 80px);
+      padding-right: clamp(24px, 5vw, 80px);
     }
 
     .process-header {
       text-align: center;
       margin-bottom: 56px;
+    }
+
+    .process-header .tag {
+      border: none;
+      padding: 0;
+      color: var(--mid);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .process-header .tag::before {
+      content: '— ';
+      letter-spacing: -2px;
+      margin-right: 6px;
     }
 
     .process-header h2 {
@@ -860,9 +877,6 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: var(--cream);
-      border: 1px solid var(--dark);
-      color: var(--dark);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -872,6 +886,10 @@
       margin-bottom: 16px;
       box-shadow: 0 0 0 10px var(--cream);
     }
+    .proc-step:nth-child(2) .circle { background: var(--dark); color: var(--lime); }
+    .proc-step:nth-child(3) .circle { background: var(--lime); color: var(--dark); }
+    .proc-step:nth-child(4) .circle { background: var(--lilac); color: var(--dark); }
+    .proc-step:nth-child(5) .circle { background: var(--dark); color: var(--lime); }
 
     .proc-step h3 {
       font-size: 1.1rem;
@@ -1331,7 +1349,45 @@
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      .hero {
+        background-position: center bottom;
+        background-size: 110% auto;
+        border-radius: 24px;
+        min-height: 85vh;
+      }
+
+      .hero-content {
+        padding: 40px 24px 300px; /* Espaço na base para a imagem não cobrir o texto */
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+        margin-bottom: 24px;
+      }
+
+      .hero-actions {
+        flex-direction: row;
+        width: 100%;
+        gap: 12px;
+      }
+
+      .hero-actions .btn {
+        width: auto;
+        flex: 1;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+      }
+
+      .hero-stats {
+        display: none !important;
+      }
+
       .navbar {
         display: flex;
         justify-content: space-between;
@@ -1376,37 +1432,22 @@
       .process-flow {
         grid-template-columns: 1fr;
         gap: 40px;
+        text-align: left;
+        justify-items: start;
       }
 
       .process-line {
-        display: block;
-        top: 32px;
-        bottom: 32px;
-        left: 31px;
-        width: 2px;
-        height: auto;
-        right: auto;
-        background-image: linear-gradient(180deg,
-            var(--mid) 0, var(--mid) 8px,
-            transparent 8px, transparent 16px);
-        background-size: 2px 16px;
-        background-repeat: repeat-y;
-        animation: marching-ants-y 1s linear infinite;
-      }
-
-      @keyframes marching-ants-y {
-        0% {
-          background-position: 0 0;
-        }
-
-        100% {
-          background-position: 0 16px;
-        }
+        display: none !important;
       }
 
       .proc-step {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .proc-step .circle {
+        box-shadow: none;
       }
 
       .footer-top {
@@ -1417,6 +1458,39 @@
         flex-direction: column;
         gap: 16px;
         align-items: center;
+      }
+
+      .testimonial {
+        border-radius: 24px;
+      }
+
+      .testi-content {
+        padding: 48px 24px;
+      }
+
+      .testi-quote {
+        font-size: 1.5rem;
+        margin-bottom: 32px;
+      }
+
+      .quote-mark {
+        font-size: 6rem;
+        top: 32px;
+        left: 24px;
+      }
+
+      .pricing {
+        padding-top: 40px;
+        padding-bottom: 64px;
+        border-radius: 24px;
+      }
+
+      .pricing-header {
+        margin-bottom: 40px;
+      }
+
+      .plan-card {
+        padding: 32px 24px;
       }
     }
   </style>
@@ -1434,7 +1508,6 @@
         <a href="#planos">Planos</a>
       </div>
       <div class="nav-right">
-        <a href="#login" class="nav-link" style="font-weight: 500; font-size: 0.95rem;">Entrar</a>
         <a href="#contato" class="nav-cta">Começar agora</a>
       </div>
     </nav>
@@ -1447,7 +1520,7 @@
 
         <div class="hero-actions">
           <a href="#contato" class="btn btn-lime">Começar grátis</a>
-          <a href="#servicos" class="btn btn-hero-outline">Como funciona</a>
+          <a href="#servicos" class="btn btn-hero-outline">Saber mais</a>
         </div>
 
         <div class="hero-proof">
@@ -1633,8 +1706,8 @@
     <!-- Process -->
     <section class="section-pad process" id="como">
       <div class="process-header">
-        <span class="tag">Processo</span>
-        <h2>Quatro passos.<br><em>Zero</em> dor de cabeça.</h2>
+        <span class="tag">Como funciona</span>
+        <h2>Quatro passos.<br>Zero <em>dor de cabeça.</em></h2>
       </div>
       <div class="process-flow anim-stagger">
         <div class="process-line"></div>
