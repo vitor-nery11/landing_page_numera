@@ -4,7 +4,7 @@
 Este é um projeto front-end contendo uma Landing Page Cinematográfica Premium para a Numera, uma contabilidade digital focada em empreendedores. O projeto serve como infraestrutura base de UI/UX, utilizando layouts fluídos, tipografia moderna e animações imersivas sem depender de bibliotecas CSS pesadas.
 
 ## Telas do Projeto
-Página Inicial | Hero Section | Sessão de Serviços | Manifesto
+<img src="docs/preview.png" alt="Preview da Landing Page Numera" width="100%">
 
 ## Funcionalidades
 - Landing Page minimalista, elegante e 100% responsiva.
